@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 # we need some build tools for installing additional python pip packages
 RUN apt-get update \
-    && apt-get install --yes \
+    && apt-get install --yes --no-install-recommends \
     software-properties-common \
     build-essential \
     gcc \
@@ -25,8 +25,8 @@ WORKDIR /app
 
 # if we have a packages.txt, install it here, uncomment the two lines below
 # be aware that packages.txt must have LF endings only!
-# COPY packages.txt packages.txt
-# RUN xargs -a packages.txt apt-get install --yes
+COPY packages.txt packages.txt
+RUN xargs -a packages.txt apt-get install --yes
 
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir --upgrade -r requirements.txt

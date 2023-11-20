@@ -14,11 +14,13 @@ DOCKERTAG := "$(shell python -c "print('$(CURRDIRECTORY)'.lower())"):latest"
 ifeq ($(OS),Windows_NT)
 	# windows
 	# set python executable path for python virtualenv
-	PYTHONVENV := .venv/Scripts/python.exe
+	PYTHONVENV := .venv/Scripts/
+	PYTHONVENVEXE := .venv/Scripts/python.exe
 else
 	# linux or mac
 	# set python executable path for python virtualenv
-	PYTHONVENV := .venv/bin/python
+	PYTHONVENV := .venv/bin/
+	PYTHONVENVEXE := .venv/bin/python
 endif
 
 # default target
@@ -47,17 +49,17 @@ venv:
 	python -m venv .venv --clear --upgrade-deps
 	@echo
 	@echo "Check Virtual Environment Python Version..."
-	$(PYTHONVENV) --version
-	$(PYTHONVENV) -c "import sys; print(sys.executable)"
+	$(PYTHONVENVEXE) --version
+	$(PYTHONVENVEXE) -c "import sys; print(sys.executable)"
 	@echo
 	@echo "Install/Update venv dependencies..."
-	$(PYTHONVENV) -m pip install --upgrade pip setuptools poetry
+	$(PYTHONVENVEXE) -m pip install --upgrade pip setuptools poetry
 	@echo
 	@echo "Install project dependencies..."
-	$(PYTHONVENV) -m pip install --upgrade -r requirements.txt
+	$(PYTHONVENVEXE) -m pip install --upgrade -r requirements.txt
 	@echo
 	@echo "Check for outdated dependencies and just list them..."
-	$(PYTHONVENV) -m pip list --outdated
+	$(PYTHONVENVEXE) -m pip list --outdated
 	@echo
 	@echo "******************* virtualenv venv FINISHED *******************"
 
@@ -66,17 +68,17 @@ venvupdate:
 	@echo "+++++++++++++++++++ venvupdate START +++++++++++++++++++"
 	@echo
 	@echo "Check Virtual Environment Python Version..."
-	$(PYTHONVENV) --version
-	$(PYTHONVENV) -c "import sys; print(sys.executable)"
+	$(PYTHONVENVEXE) --version
+	$(PYTHONVENVEXE) -c "import sys; print(sys.executable)"
 	@echo
 	@echo "Update venv dependencies..."
-	$(PYTHONVENV) -m pip install --upgrade pip setuptools poetry
+	$(PYTHONVENVEXE) -m pip install --upgrade pip setuptools poetry
 	@echo
 	@echo "Update project dependencies..."
-	$(PYTHONVENV) -m pip install --upgrade -r requirements.txt
+	$(PYTHONVENVEXE) -m pip install --upgrade -r requirements.txt
 	@echo
 	@echo "Check for outdated dependencies and just list them..."
-	$(PYTHONVENV) -m pip list --outdated
+	$(PYTHONVENVEXE) -m pip list --outdated
 	@echo
 	@echo "******************* venvupdate FINISHED *******************"
 
@@ -87,6 +89,20 @@ docker:
 	@echo "Build docker image with TAG: $(DOCKERTAG)"
 	@echo
 	docker build --progress=plain --tag $(DOCKERTAG) .
+	@echo
+	@echo "******************* docker FINISHED *******************"
+
+# generare database
+schema:
+	@echo "+++++++++++++++++++ schema START +++++++++++++++++++"
+	@echo
+	@echo "Generate database schema with Prisma..."
+	@echo
+	$(PYTHONVENV)prisma db push --skip-generate --schema sqlalchemy.prisma
+	@echo
+	@echo "Generate SQLAlchemy models..."
+	@echo
+	$(PYTHONVENV)sqlacodegen --outfile ./utils/models.py sqlite:///sqlalchemy.sqlite
 	@echo
 	@echo "******************* docker FINISHED *******************"
 
