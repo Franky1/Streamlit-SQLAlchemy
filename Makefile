@@ -1,10 +1,10 @@
-.PHONY: all update venv venvupdate docker cleanpy cleanvenv cleanall
+.PHONY: all update venv venvupdate schema docker cleanpy cleanvenv cleanall
 
 # run one shell only
-.ONESHELL: all update venv venvupdate docker cleanpy cleanvenv cleanall
+.ONESHELL: all update venv venvupdate schema docker cleanpy cleanvenv cleanall
 
 # disable running of targets in parallel
-.NOTPARALLEL: all update venv venvupdate docker cleanpy cleanvenv cleanall
+.NOTPARALLEL: all update venv venvupdate schema docker cleanpy cleanvenv cleanall
 
 # predefined variables
 CURRDIRECTORY := "$(notdir $(CURDIR))"

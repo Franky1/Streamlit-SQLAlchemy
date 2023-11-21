@@ -1,7 +1,8 @@
 # add the required pypi packages here that your app actually needs
 numpy
 pandas
-pillow
+# the pyavagen package fails with pillow versions 10+
+pillow<10
 streamlit
 pydantic>2
 sqlalchemy>2

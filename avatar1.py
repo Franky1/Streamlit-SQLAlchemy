@@ -10,8 +10,7 @@ def photo(string, size=64):
 
 
 def show_image(image_byte):
-    """show image with pillow
-    """
+    """show image with pillow"""
     image = Image.open(io.BytesIO(image_byte), formats=['PNG'])
     image.show()
 

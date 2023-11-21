@@ -1,16 +1,15 @@
 import time
 
-from utils import database2 as database	 # changed from database to database2
+from utils import database
 
 
 def main():
-    db = database.get_database()
-    database.connect(db)
-    database.clear_table(db)
+    session = database.get_database_session()
+    # database.clear_table(session)
     for _ in range(10):
-        database.generate_fake_post(db)
+        database.generate_fake_post(session=session)
         time.sleep(0.1)
-    database.disconnect(db)
+    print(database.get_post_count(session=session))
 
 
 if __name__ == "__main__":

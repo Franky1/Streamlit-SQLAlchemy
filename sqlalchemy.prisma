@@ -12,7 +12,7 @@ generator client {
 
 model Post {
   id         String   @id @default(cuid())
-  created_at DateTime @default(now())
+  created    DateTime @default(now())
   author     String
   avatar     Bytes?
   title      String

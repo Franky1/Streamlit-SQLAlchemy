@@ -1,16 +1,16 @@
-from io import BytesIO
 import random
+from io import BytesIO
 
 import py_avataaars as pa
 from PIL import Image, ImageDraw, ImageOps
 
 
-def resize_square_image(image_obj, size):
+def resize_square_image(image_obj: Image, size: int) -> Image:
     '''resize image to square image'''
     return image_obj.resize((size, size))
 
 
-def make_circular_thumnail(image_obj):
+def make_circular_thumnail(image_obj: Image) -> Image:
     """make circular thumnail from pillow image object"""
     mask = Image.new('L', image_obj.size, 0)
     draw = ImageDraw.Draw(mask)
@@ -20,7 +20,7 @@ def make_circular_thumnail(image_obj):
     return output
 
 
-def generate_thumbnail():
+def generate_thumbnail() -> Image:
     '''generate avatar image as pillow image object'''
     avatar = pa.PyAvataaar(
         style=random.choice(list(pa.AvatarStyle)),
@@ -43,19 +43,19 @@ def generate_thumbnail():
     return Image.open(BytesIO(png_bytes), formats=['PNG'])
 
 
-def show_image(image_obj):
+def show_image(image_obj: Image):
     """show pillow image object"""
     image_obj.show()
 
 
-def to_bytes(image_obj):
+def to_bytes(image_obj : Image) -> bytes:
     """convert pillow image object to png file as bytes"""
     bytesio_obj = BytesIO()
     image_obj.save(bytesio_obj, format='PNG')
     return bytesio_obj.getvalue()
 
 
-def generate_circular_thumbnail_bytes(size=128):
+def generate_circular_thumbnail_bytes(size: int=128) -> bytes:
     """generate circular avatar image as bytesio bytes"""
     return to_bytes(make_circular_thumnail(resize_square_image(generate_thumbnail(), size=size)))
 

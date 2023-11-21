@@ -98,3 +98,12 @@
   - <https://github.com/rogerbinns/apsw>
 - pypika
   - <https://github.com/kayak/pypika>
+
+## Youtube Tutorials :tv:
+
+- SQLAlchemy & Copilot
+  - <https://www.youtube.com/watch?v=qS7ueUcQfjI>
+- TUTORIAL: SQLAlchemy 2.0
+  - <https://www.youtube.com/watch?v=Uym2DHnUEno>
+- SQLAlchemy 2.0 ORM Crash Course
+  - <https://www.youtube.com/watch?v=XWtj4zLl_tg>

@@ -1,8 +1,7 @@
-import base64
-
 import streamlit as st
+from sqlalchemy.orm import Session
 
-from utils import database2 as database	 # changed from database to database2
+from utils import database	 # changed from database to database2
 
 # set basic page config
 st.set_page_config(page_title="Streamlit SQLAlchemy ORM",
@@ -16,12 +15,12 @@ st.set_page_config(page_title="Streamlit SQLAlchemy ORM",
 
 
 @st.cache_resource(ttl=3600, show_spinner=False)
-def get_database():
-    return database.get_database()
+def get_database_session() -> Session:
+    return database.get_database_session()
 
 
 @st.cache_resource(show_spinner=False, experimental_allow_widgets=True)
-def build_streamlit_header():
+def build_streamlit_header() -> None:
     st.title(':dvd: Streamlit Prisma ORM Example :dvd:')
     st.markdown("""
         This app is only a simple example of how to use SQLAlchemy 2 with Streamlit.
@@ -30,29 +29,25 @@ def build_streamlit_header():
 
 
 @st.cache_data(show_spinner=False)
-def get_image_from_post(_post, postid):
-    b64 = _post.avatar
-    if b64:
-        return base64.b64decode(b64)
-    return None
+def get_image_from_post(_post: database.Post, postid: int) -> bytes:
+    return _post.avatar
 
 
 # @st.cache_data(show_spinner=False, experimental_allow_widgets=True)
-def build_streamlit_post(_post, postid):
+def build_streamlit_post(_post: database.Post, postid: int) -> None:
     posts_container = st.container()
     posts_columns = posts_container.columns([1, 14], gap="small")
     posts_columns[0].image(get_image_from_post(_post, postid), output_format='PNG')
     posts_columns[1].subheader(_post.title)
     posts_columns[1].write(_post.content)
     posts_columns[1].text(f"Author: {_post.author}")
-    posts_columns[1].text(f"Created at: {_post.created_at}")
+    posts_columns[1].text(f"Created at: {_post.created}")
     posts_container.write("---")
 
 
 if __name__ == "__main__":
     if 'db' not in st.session_state:
-        db_ = database.get_database()
-        database.connect(db_)
+        db_ = database.get_database_session()
         st.session_state.db = db_
     build_streamlit_header()
 
@@ -99,5 +94,3 @@ if __name__ == "__main__":
         st.write("---")
         st.subheader('📊 Database Stats 📊')
         st.write(f"Total Posts: {database.get_post_count(st.session_state.db)}")
-
-    # database.disconnect(st.session_state.db)
