@@ -11,7 +11,7 @@ generator client {
 }
 
 model Post {
-  id         String   @id @default(cuid())
+  uuid       String   @id @default(cuid())
   created    DateTime @default(now())
   author     String
   avatar     Bytes?

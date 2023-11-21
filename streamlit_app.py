@@ -29,15 +29,15 @@ def build_streamlit_header() -> None:
 
 
 @st.cache_data(show_spinner=False)
-def get_image_from_post(_post: database.Post, postid: int) -> bytes:
+def get_image_from_post(_post: database.Post, uuid: int) -> bytes:
     return _post.avatar
 
 
 # @st.cache_data(show_spinner=False, experimental_allow_widgets=True)
-def build_streamlit_post(_post: database.Post, postid: int) -> None:
+def build_streamlit_post(_post: database.Post, uuid: int) -> None:
     posts_container = st.container()
     posts_columns = posts_container.columns([1, 14], gap="small")
-    posts_columns[0].image(get_image_from_post(_post, postid), output_format='PNG')
+    posts_columns[0].image(get_image_from_post(_post, uuid), output_format='PNG')
     posts_columns[1].subheader(_post.title)
     posts_columns[1].write(_post.content)
     posts_columns[1].text(f"Author: {_post.author}")
@@ -71,15 +71,15 @@ if __name__ == "__main__":
     if button2:
         post = database.get_newest_post(st.session_state.db)
         if post:
-            database.delete_post(st.session_state.db, database.get_newest_post(st.session_state.db).id)
+            database.delete_post(st.session_state.db, database.get_newest_post(st.session_state.db).uuid)
     if button3:
         post = database.get_oldest_post(st.session_state.db)
         if post:
-            database.delete_post(st.session_state.db, database.get_oldest_post(st.session_state.db).id)
+            database.delete_post(st.session_state.db, database.get_oldest_post(st.session_state.db).uuid)
     if button4:
         post = database.get_random_post(st.session_state.db)
         if post:
-            database.delete_post(st.session_state.db, database.get_random_post(st.session_state.db).id)
+            database.delete_post(st.session_state.db, database.get_random_post(st.session_state.db).uuid)
     if button5:
         database.clear_table(st.session_state.db)
 
@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
     with st.container():
         for post in posts:
-            build_streamlit_post(post, post.id)
+            build_streamlit_post(post, post.uuid)
 
     with st.sidebar:
         st.header('About')
