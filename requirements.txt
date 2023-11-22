@@ -9,7 +9,6 @@ sqlalchemy>2
 alchemical
 # this is a prerelease version of sqlacodegen that supports sqlalchemy 2.0
 sqlacodegen==3.0.0rc3
-prisma
 faker
 pyavagen
 py-avataaars

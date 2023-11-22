@@ -95,10 +95,6 @@ docker:
 schema:
 	@echo "+++++++++++++++++++ schema START +++++++++++++++++++"
 	@echo
-	@echo "Generate database schema with Prisma..."
-	@echo
-	$(PYTHONVENV)prisma db push --skip-generate --schema sqlalchemy.prisma
-	@echo
 	@echo "Generate SQLAlchemy models..."
 	@echo
 	$(PYTHONVENV)sqlacodegen --outfile ./utils/models.py sqlite:///sqlalchemy.sqlite

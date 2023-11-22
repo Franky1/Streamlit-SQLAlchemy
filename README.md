@@ -1,9 +1,9 @@
 <!-- markdownlint-disable MD026 -->
-# Streamlit SQLAlchemy 2 ORM Example Project :dvd:
+# Streamlit SQLAlchemy 2.0 ORM Example Project :dvd:
 
 [![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://streamlit.io/)
 
-## :construction: :construction: :construction: *WIP - do not use yet* :construction: :construction: :construction:
+## :construction: :construction: :construction: *WIP* :construction: :construction: :construction:
 
 ## Description :pencil2:
 
@@ -15,17 +15,16 @@
 
 ## Ideas :bulb:
 
-> tbd.
+- Make example with an external database instead of local SQLite
 
 ## Issues :bug:
 
-> tbd.
+- None
 
 ## Status :heavy_check_mark:
 
-:construction: :construction: :construction: *WIP* :construction: :construction: :construction:
-
-> Last changed: 2023-11-20
+- Streamlit app is working
+- Last changed: 2023-11-22
 
 ---
 

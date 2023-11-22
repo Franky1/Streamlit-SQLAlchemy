@@ -43,3 +43,5 @@ LICENSE
 Dockerfile
 env/
 venv/
+.env/
+.venv/
