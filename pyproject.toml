@@ -16,6 +16,6 @@ respect-gitignore = true
 # exclude some more folders for ruff analysis
 extend-exclude = [".streamlit", "assets"]
 # Allow lines to be as long as 120 characters.
-line-length = 120
+line-length = 140
 # Assume Python 3.11
 target-version = "py311"

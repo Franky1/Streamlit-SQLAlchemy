@@ -1,7 +1,8 @@
 import io
 
-from avatar_generator import Avatar
 from PIL import Image
+
+from avatar_generator import Avatar
 
 
 def photo(string, size=64):

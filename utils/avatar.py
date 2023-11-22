@@ -4,7 +4,7 @@ import pyavagen
 from PIL import Image, ImageDraw, ImageOps
 
 
-def make_circular_thumnail(image_obj):
+def make_circular_thumnail(image_obj: Image) -> Image:
     """make circular thumnail from pillow image object"""
     mask = Image.new('L', image_obj.size, 0)
     draw = ImageDraw.Draw(mask)
@@ -14,25 +14,25 @@ def make_circular_thumnail(image_obj):
     return output
 
 
-def generate_thumbnail(string, size=64):
+def generate_thumbnail(string: str, size: int=64) -> Image:
     '''generate avatar image as pillow image object'''
     ava = pyavagen.Avatar(pyavagen.CHAR_SQUARE_AVATAR, size=size, string=string)
     return ava.generate()
 
 
-def show_image(image_obj):
+def show_image(image_obj: Image) -> None:
     """show pillow image object"""
     image_obj.show()
 
 
-def to_bytes(image_obj):
+def to_bytes(image_obj: Image) -> bytes:
     """convert pillow image object to png file as bytes"""
     bytesio_obj = BytesIO()
     image_obj.save(bytesio_obj, format='PNG')
     return bytesio_obj.getvalue()
 
 
-def generate_circular_thumbnail_bytes(string, size=64):
+def generate_thumbnail_bytes(string: str, size: int=128) -> bytes:
     """generate circular avatar image as bytesio bytes"""
     return to_bytes(make_circular_thumnail(generate_thumbnail(string=string, size=size)))
 

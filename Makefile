@@ -25,7 +25,6 @@ endif
 
 # default target
 all: cleanpy update venv
-	@echo "+++++++++++++++++++ all START +++++++++++++++++++"
 	@echo
 	@echo "******************* all FINISHED *******************"
 
