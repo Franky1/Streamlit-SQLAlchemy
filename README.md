@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD026 -->
 # Streamlit SQLAlchemy 2.0 ORM Example Project :dvd:
 
-[![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://streamlit.io/)
+[![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://app-sqlalchemy-mfda3ohswwpiu7vamuy54p.streamlit.app/)
 
 ## :construction: :construction: :construction: *WIP* :construction: :construction: :construction:
 
