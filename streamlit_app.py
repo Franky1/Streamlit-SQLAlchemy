@@ -3,14 +3,14 @@ import streamlit as st
 from utils import database
 
 # set basic page config
-st.set_page_config(page_title="Streamlit SQLAlchemy ORM",
+st.set_page_config(page_title="Streamlit SQLAlchemy",
                     page_icon=':dvd:',
                     layout='wide',
                     initial_sidebar_state='expanded')
 
-# apply custom css if needed
-# with open('assets/styles/style.css') as css:
-#     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
+# apply custom css styles
+with open('assets/styles/style.css') as css:
+    st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
 
 
 @st.cache_resource(ttl=3600, show_spinner=False)
@@ -20,7 +20,7 @@ def get_database_session():
 
 @st.cache_resource(show_spinner=False, experimental_allow_widgets=True)
 def build_streamlit_header() -> None:
-    st.title(body=':dvd: Streamlit SQLAlchemy 2.0 ORM Example :dvd:')
+    st.title(body='Streamlit SQLAlchemy 2.0 ORM Example :dvd:')
     st.markdown("""
         This app is only a simple example of how to use SQLAlchemy 2.0 ORM with Streamlit.
         """)
@@ -29,16 +29,21 @@ def build_streamlit_header() -> None:
 @st.cache_resource(show_spinner=False, experimental_allow_widgets=True)
 def build_sidebar() -> None:
     st.sidebar.header(body='About :eyeglasses:', divider='blue')
-    st.sidebar.markdown("""Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                        ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                        sed diam voluptua.
+    st.sidebar.markdown("""
+                        This app is only a simple example of how to use SQLAlchemy 2.0 ORM with Streamlit.
                         """)
     st.sidebar.header(body='GitHub :cd:', divider='blue')
-    st.sidebar.markdown("""<https://github.com/Franky1/Streamlit-SQLAlchemy>""")
+    st.sidebar.markdown("""- [Streamlit-SQLAlchemy](https://github.com/Franky1/Streamlit-SQLAlchemy)""")
     st.sidebar.header(body='Resources :link:', divider='blue')
-    st.sidebar.markdown("""<https://docs.sqlalchemy.org/en/20/index.html>""")
+    st.sidebar.markdown("""
+                        - [SQLAlchemy](https://www.sqlalchemy.org/)
+                        - [SQLAlchemy 2.0 Documentation](https://docs.sqlalchemy.org/en/20/index.html)
+                        - [SQLAlchemy ORM](https://docs.sqlalchemy.org/en/20/orm/index.html)
+                        - [What's New in SQLAlchemy 2.0](https://blog.miguelgrinberg.com/post/what-s-new-in-sqlalchemy-2-0)
+                        - [Awesome SQLAlchemy](https://github.com/dahlia/awesome-sqlalchemy)
+                        """)
+    st.sidebar.write("<br><br>", unsafe_allow_html=True)
+    st.sidebar.image(image='assets/images/database3.png', output_format='PNG')
 
 
 @st.cache_data(show_spinner=False, hash_funcs={database.Post: lambda post: post.uuid})

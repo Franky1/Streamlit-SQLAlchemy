@@ -1,7 +1,14 @@
 /* custom styling of streamlit components */
-/* just an example here */
 
-hr {
+/* hr {
     margin-top: 1em;
     margin-bottom: 1em;
+} */
+
+[data-testid=stSidebar] [data-testid=stImage]{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }

@@ -98,6 +98,8 @@
 - pypika
   - <https://github.com/kayak/pypika>
 
+---
+
 ## Youtube Tutorials :tv:
 
 - SQLAlchemy & Copilot

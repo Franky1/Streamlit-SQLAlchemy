@@ -119,6 +119,5 @@ cleanvenv:
 
 # clean all
 cleanall: cleanpy cleanvenv
-	@echo "+++++++++++++++++++ cleanall START +++++++++++++++++++"
 	@echo
 	@echo "******************* cleanall FINISHED *******************"
