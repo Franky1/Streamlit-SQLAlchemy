@@ -58,12 +58,14 @@
     - <https://github.com/miguelgrinberg/retrofun>
   - sqlalchemy-sqlite-playground
     - <https://github.com/pamelafox/sqlalchemy-sqlite-playground>
+  - SQLAlchemy Data Model Visualizer
+    - <https://github.com/Dicklesworthstone/sqlalchemy_data_model_visualizer>
 - SQLModel
   - *not yet ported to pydantic 2 and sqlalchemy 2 versions...*
   - <https://sqlmodel.tiangolo.com/>
 - Tortoise ORM
   - <https://github.com/tortoise/tortoise-orm>
-- Prisma :thumbsdown:
+- Prisma
   - <https://www.prisma.io/>
   - <https://www.prisma.io/ecosystem>
   - <https://github.com/prisma/prisma>
@@ -81,7 +83,7 @@
   - <https://github.com/ponyorm/pony>
 - Ormar
   - <https://github.com/collerek/ormar>
-- sqlobject :thumbsdown:
+- sqlobject
   - <https://github.com/sqlobject/sqlobject>
 
 ### ORM Libraries Overview :telescope:
@@ -103,6 +105,8 @@
 ---
 
 ## Youtube Tutorials :tv:
+
+SQLAlchemy 2.0 related video tutorials on Youtube:
 
 - SQLAlchemy & Copilot
   - <https://www.youtube.com/watch?v=qS7ueUcQfjI>
