@@ -1,4 +1,3 @@
-# add the required pypi packages here that your app actually needs
 numpy
 pandas
 # the pyavagen package fails with pillow versions 10+
@@ -6,9 +5,6 @@ pillow<10
 streamlit
 pydantic>2
 sqlalchemy>2
-alchemical
-# this is a prerelease version of sqlacodegen that supports sqlalchemy 2.0
-sqlacodegen==3.0.0rc3
 faker
 pyavagen
 py-avataaars

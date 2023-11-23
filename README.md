@@ -11,7 +11,9 @@
 
 ## ToDo :ballot_box_with_check:
 
-> tbd.
+- [ ] Add more documentation
+- [ ] Add more CSS styling for the Streamlit app
+- [ ] Test Streamlit app on Streamlit Cloud from different clients
 
 ## Ideas :bulb:
 
@@ -24,7 +26,7 @@
 ## Status :heavy_check_mark:
 
 - Streamlit app is working
-- Last changed: 2023-11-22
+- Last changed: `2023-11-23`
 
 ---
 

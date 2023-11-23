@@ -40,7 +40,6 @@ def build_sidebar() -> None:
                         - [SQLAlchemy 2.0 Documentation](https://docs.sqlalchemy.org/en/20/index.html)
                         - [SQLAlchemy ORM](https://docs.sqlalchemy.org/en/20/orm/index.html)
                         - [What's New in SQLAlchemy 2.0](https://blog.miguelgrinberg.com/post/what-s-new-in-sqlalchemy-2-0)
-                        - [Awesome SQLAlchemy](https://github.com/dahlia/awesome-sqlalchemy)
                         """)
     st.sidebar.write("<br><br>", unsafe_allow_html=True)
     st.sidebar.image(image='assets/images/database3.png', output_format='PNG')
