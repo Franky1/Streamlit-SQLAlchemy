@@ -25,7 +25,7 @@ def build_streamlit_header() -> None:
         This Streamlit app is only a simple example of how to use SQLAlchemy 2.0 ORM with Streamlit.
         It uses a local SQLite database to store the data. <br>
         This app is a simple post generator with fake data.
-        Random posts are generated with the `Faker` library.
+        Random posts are generated with the `Faker` library and the `py-avataaars` library is used to generate avatars.
         You can add random posts, delete posts and delete all posts.
         """, unsafe_allow_html=True)
 
@@ -45,7 +45,6 @@ def build_sidebar() -> None:
                         - [SQLAlchemy](https://www.sqlalchemy.org/)
                         - [Faker](https://faker.readthedocs.io/en/master/)
                         - [Pillow](https://pillow.readthedocs.io/en/stable/)
-                        - [pyavagen](https://github.com/lxbrvr/pyavagen)
                         - [py-avataaars](https://github.com/kebu/py-avataaars)
                         """)
     st.sidebar.header(body='Resources :link:', divider='blue')

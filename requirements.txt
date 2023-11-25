@@ -1,10 +1,10 @@
-numpy
-pandas
+streamlit
 # the pyavagen package fails with pillow versions 10 and above
 pillow==9.5.0
-streamlit
 pydantic>2
 sqlalchemy==2.0.23
 faker
+# pyavagen is used on windows only
 pyavagen
+# py-avataaars is used on linux/mac
 py-avataaars
