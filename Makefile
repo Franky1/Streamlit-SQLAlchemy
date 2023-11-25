@@ -106,6 +106,7 @@ cleanpy:
 	@echo "+++++++++++++++++++ cleanpy START +++++++++++++++++++"
 	@echo
 	rm -rf __pycache__
+	rm -rf utils/__pycache__
 	@echo
 	@echo "******************* cleanpy FINISHED *******************"
 

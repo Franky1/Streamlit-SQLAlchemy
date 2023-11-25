@@ -2,7 +2,7 @@ import random
 import sys
 
 from faker import Faker
-from sqlalchemy import create_engine, func, select, text
+from sqlalchemy import create_engine, func, select
 from sqlalchemy.orm import Session, sessionmaker
 
 from utils.models import Base, Post
@@ -25,8 +25,9 @@ def get_database_session() -> Session:
 
 
 def clear_table(session: Session):
-    session.query(Post).delete()
-    session.commit()
+    with session:
+        session.query(Post).delete()
+        session.commit()
 
 
 def get_all_posts(session: Session):
@@ -57,14 +58,16 @@ def generate_fake_post(session: Session):
         author=author,
         avatar=avatar.generate_thumbnail_bytes(string=author, size=128),
     )
-    session.add(post)
-    session.commit()
+    with session:
+        session.add(post)
+        session.commit()
 
 
 def delete_post(session: Session, id_: int=None):
     if id_:
-        session.query(Post).filter(Post.id == id_).delete()
-        session.commit()
+        with session:
+            session.query(Post).filter(Post.id == id_).delete()
+            session.commit()
 
 
 def get_oldest_post(session: Session):

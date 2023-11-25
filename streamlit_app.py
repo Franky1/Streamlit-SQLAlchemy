@@ -22,20 +22,35 @@ def get_database_session():
 def build_streamlit_header() -> None:
     st.title(body='Streamlit SQLAlchemy 2.0 ORM Example :dvd:')
     st.markdown("""
-        This app is only a simple example of how to use SQLAlchemy 2.0 ORM with Streamlit.
-        """)
+        This Streamlit app is only a simple example of how to use SQLAlchemy 2.0 ORM with Streamlit.
+        It uses a local SQLite database to store the data. <br>
+        This app is a simple post generator with fake data.
+        Random posts are generated with the `Faker` library.
+        You can add random posts, delete posts and delete all posts.
+        """, unsafe_allow_html=True)
 
 
 @st.cache_resource(show_spinner=False, experimental_allow_widgets=True)
 def build_sidebar() -> None:
     st.sidebar.header(body='About :eyeglasses:', divider='blue')
     st.sidebar.markdown("""
-                        This app is only a simple example of how to use SQLAlchemy 2.0 ORM with Streamlit.
+                        Streamlit example app with SQLAlchemy 2.0 ORM.
                         """)
     st.sidebar.header(body='GitHub :cd:', divider='blue')
     st.sidebar.markdown("""- [Streamlit-SQLAlchemy](https://github.com/Franky1/Streamlit-SQLAlchemy)""")
+    st.sidebar.header(body='Libraries :books:', divider='blue')
+    st.sidebar.markdown("""
+                        Used Python Libraries in this app:
+                        - [Streamlit](https://docs.streamlit.io/)
+                        - [SQLAlchemy](https://www.sqlalchemy.org/)
+                        - [Faker](https://faker.readthedocs.io/en/master/)
+                        - [Pillow](https://pillow.readthedocs.io/en/stable/)
+                        - [pyavagen](https://github.com/lxbrvr/pyavagen)
+                        - [py-avataaars](https://github.com/kebu/py-avataaars)
+                        """)
     st.sidebar.header(body='Resources :link:', divider='blue')
     st.sidebar.markdown("""
+                        Links to SQLAlchemy 2.0 documentation:
                         - [SQLAlchemy](https://www.sqlalchemy.org/)
                         - [SQLAlchemy 2.0 Documentation](https://docs.sqlalchemy.org/en/20/index.html)
                         - [SQLAlchemy ORM](https://docs.sqlalchemy.org/en/20/orm/index.html)
@@ -60,10 +75,9 @@ def get_content_from_post(post: database.Post) -> str:
 def build_streamlit_post(post: database.Post) -> None:
     posts_container = st.container()
     posts_columns = posts_container.columns(spec=[1, 11], gap="large")
-    posts_columns[0].image(image=get_avatar_from_post(post), output_format='PNG')
+    posts_columns[0].image(image=get_avatar_from_post(post), caption=post.author, output_format='PNG')
     posts_columns[1].subheader(body=post.title, divider=True)
     posts_columns[1].markdown(body=get_content_from_post(post))
-    posts_columns[1].text(body=f"Author: {post.author}")
     posts_columns[1].text(body=f"Created: {post.created}  |  ID: {post.id}  |  UUID: {post.uuid}")
     posts_container.markdown(body="---")
 
