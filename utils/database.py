@@ -24,10 +24,17 @@ def get_database_session() -> Session:
     return session
 
 
-def clear_table(session: Session):
-    with session:
-        session.query(Post).delete()
+def clear_table(session: Session) -> bool:
+    success = False
+    session.query(Post).delete()
+    try:
         session.commit()
+    except Exception as e:
+        print(e)
+        session.rollback()
+    else:
+        success = True
+    return success
 
 
 def get_all_posts(session: Session):
@@ -50,7 +57,8 @@ def get_single_post(session: Session, id_: int):
     return post
 
 
-def generate_fake_post(session: Session):
+def generate_fake_post(session: Session) -> bool:
+    success = False
     author = f"{fake.first_name()} {fake.last_name()}"
     post = Post(
         title=fake.sentence(nb_words=7).strip("."),
@@ -58,16 +66,29 @@ def generate_fake_post(session: Session):
         author=author,
         avatar=avatar.generate_thumbnail_bytes(string=author, size=128),
     )
-    with session:
-        session.add(post)
+    session.add(post)
+    try:
         session.commit()
+    except Exception as e:
+        print(e)
+        session.rollback()
+    else:
+        success = True
+    return success
 
 
-def delete_post(session: Session, id_: int=None):
+def delete_post(session: Session, id_: int=None) -> bool:
+    success = False
     if id_:
-        with session:
-            session.query(Post).filter(Post.id == id_).delete()
+        session.query(Post).filter(Post.id == id_).delete()
+        try:
             session.commit()
+        except Exception as e:
+            print(e)
+            session.rollback()
+        else:
+            success = True
+    return success
 
 
 def get_oldest_post(session: Session):

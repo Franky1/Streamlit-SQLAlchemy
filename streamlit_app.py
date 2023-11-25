@@ -101,36 +101,43 @@ if __name__ == "__main__":
         button4 = st.button(label='Delete random post', use_container_width=True)
     with col5:
         button5 = st.button(label='Delete all posts', use_container_width=True)
+    placeholder_success = st.container()
     st.write("<br>", unsafe_allow_html=True)
 
     st.subheader(body="SQLite Database Stats :bar_chart:", divider='orange')
-    placeholder = st.container()
+    placeholder_stats = st.container()
 
     st.header(body="Posts :pencil2:", divider='green')
     st.write("<br>", unsafe_allow_html=True)
 
+    success = False
     if button1:
-        database.generate_fake_post(st.session_state.dbsession)
+        success = database.generate_fake_post(st.session_state.dbsession)
     if button2:
         npost = database.get_newest_post(st.session_state.dbsession)
         if npost:
-            database.delete_post(st.session_state.dbsession, npost.id)
+            success = database.delete_post(st.session_state.dbsession, npost.id)
     if button3:
         opost = database.get_oldest_post(st.session_state.dbsession)
         if opost:
-            database.delete_post(st.session_state.dbsession, opost.id)
+            success = database.delete_post(st.session_state.dbsession, opost.id)
     if button4:
         rpost = database.get_random_post(st.session_state.dbsession)
         if rpost:
-            database.delete_post(st.session_state.dbsession, rpost.id)
+            success = database.delete_post(st.session_state.dbsession, rpost.id)
     if button5:
-        database.clear_table(st.session_state.dbsession)
+        success = database.clear_table(st.session_state.dbsession)
         get_avatar_from_post.clear()  # clear streamlit cache for this function
         get_content_from_post.clear()  # clear streamlit cache for this function
 
+    if success:
+        placeholder_success.success(body="Database action was successful!", icon='👍')
+    else:
+        placeholder_success.error(body="Database action was NOT successful!", icon='🛑')
+
     posts = database.get_all_posts_sorted_desc(st.session_state.dbsession)
     count = database.get_post_count(st.session_state.dbsession)
-    placeholder.markdown(body=f":orange[Total Posts: {count}]")
+    placeholder_stats.markdown(body=f":orange[Total Posts: {count}]")
 
     with st.container():
         for po in posts:
