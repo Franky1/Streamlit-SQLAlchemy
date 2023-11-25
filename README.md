@@ -3,15 +3,19 @@
 
 [![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://app-sqlalchemy-mfda3ohswwpiu7vamuy54p.streamlit.app/)
 
-## :construction: :construction: :construction: *WIP* :construction: :construction: :construction:
+Streamlit example app with SQLAlchemy 2.0 ORM.
 
 ## Description :pencil2:
 
-> tbd.
+This Streamlit app is only a simple example of how to use SQLAlchemy 2.0 ORM with Streamlit.
+It uses a local SQLite database to store the data.
+
+This app is a simple post generator with fake data.
+Random posts are generated with the `Faker` library and the `py-avataaars` library is used to generate avatars.
+You can add random posts, delete posts and delete all posts.
 
 ## ToDo :ballot_box_with_check:
 
-- [ ] Add more documentation
 - [ ] Add more CSS styling for the Streamlit app
 - [ ] Test Streamlit app on Streamlit Cloud from different clients
 
@@ -26,11 +30,24 @@
 ## Status :heavy_check_mark:
 
 - Streamlit app is working
-- Last changed: `2023-11-23`
+- Last changed: `2023-11-25`
 
 ---
 
-## Resources :books:
+## Libraries :books:
+
+Used Python Libraries in this app:
+
+- [Streamlit](https://docs.streamlit.io/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
+- [Faker](https://faker.readthedocs.io/en/master/)
+- [Pillow](https://pillow.readthedocs.io/en/stable/)
+- [pyavagen](https://github.com/lxbrvr/pyavagen)
+- [py-avataaars](https://github.com/kebu/py-avataaars)
+
+---
+
+## Resources :link:
 
 ### Python Database ORM Libraries :snake:
 
