@@ -24,8 +24,8 @@ def get_database_session() -> Session:
     return session
 
 
-def clear_table(session: Session) -> bool:
-    success = False
+def clear_table(session: Session) -> str:
+    success = "rollback"
     session.query(Post).delete()
     try:
         session.commit()
@@ -33,7 +33,7 @@ def clear_table(session: Session) -> bool:
         print(e)
         session.rollback()
     else:
-        success = True
+        success = "commit"
     return success
 
 
@@ -57,8 +57,8 @@ def get_single_post(session: Session, id_: int):
     return post
 
 
-def generate_fake_post(session: Session) -> bool:
-    success = False
+def generate_fake_post(session: Session) -> str:
+    success = "rollback"
     author = f"{fake.first_name()} {fake.last_name()}"
     post = Post(
         title=fake.sentence(nb_words=7).strip("."),
@@ -73,12 +73,12 @@ def generate_fake_post(session: Session) -> bool:
         print(e)
         session.rollback()
     else:
-        success = True
+        success = "commit"
     return success
 
 
-def delete_post(session: Session, id_: int=None) -> bool:
-    success = False
+def delete_post(session: Session, id_: int=None) -> str:
+    success = "rollback"
     if id_:
         session.query(Post).filter(Post.id == id_).delete()
         try:
@@ -87,7 +87,7 @@ def delete_post(session: Session, id_: int=None) -> bool:
             print(e)
             session.rollback()
         else:
-            success = True
+            success = "commit"
     return success
 
 

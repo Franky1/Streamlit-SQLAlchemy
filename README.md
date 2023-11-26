@@ -25,12 +25,12 @@ You can add random posts, delete posts and delete all posts.
 
 ## Issues :bug:
 
-- None
+- This app only uses a local SQLite database, there is no external database connection, therefore data is not persistent.
 
 ## Status :heavy_check_mark:
 
 - Streamlit app is working
-- Last changed: `2023-11-25`
+- Last changed: `2023-11-26`
 
 ---
 
@@ -103,7 +103,7 @@ Used Python Libraries in this app:
 - sqlobject
   - <https://github.com/sqlobject/sqlobject>
 
-### ORM Libraries Overview :telescope:
+### ORM Libraries Overview :eyeglasses:
 
 - 7 Best Python ORM Libraries You Should Know
   - <https://python.plainenglish.io/7-best-python-orm-libraries-you-should-know-3a17c63c3aab>

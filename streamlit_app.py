@@ -110,30 +110,40 @@ if __name__ == "__main__":
     st.header(body="Posts :pencil2:", divider='green')
     st.write("<br>", unsafe_allow_html=True)
 
-    success = False
+    action = "none"
     if button1:
-        success = database.generate_fake_post(st.session_state.dbsession)
+        action = database.generate_fake_post(st.session_state.dbsession)
     if button2:
         npost = database.get_newest_post(st.session_state.dbsession)
         if npost:
-            success = database.delete_post(st.session_state.dbsession, npost.id)
+            action = database.delete_post(st.session_state.dbsession, npost.id)
+        else:
+            action = "empty"
     if button3:
         opost = database.get_oldest_post(st.session_state.dbsession)
         if opost:
-            success = database.delete_post(st.session_state.dbsession, opost.id)
+            action = database.delete_post(st.session_state.dbsession, opost.id)
+        else:
+            action = "empty"
     if button4:
         rpost = database.get_random_post(st.session_state.dbsession)
         if rpost:
-            success = database.delete_post(st.session_state.dbsession, rpost.id)
+            action = database.delete_post(st.session_state.dbsession, rpost.id)
+        else:
+            action = "empty"
     if button5:
-        success = database.clear_table(st.session_state.dbsession)
+        action = database.clear_table(st.session_state.dbsession)
         get_avatar_from_post.clear()  # clear streamlit cache for this function
         get_content_from_post.clear()  # clear streamlit cache for this function
 
-    if success:
-        placeholder_success.success(body="Database action was successful!", icon='👍')
+    if action == "commit":
+        placeholder_success.success(body="Database action was successful! Commit was performed!", icon='✅')
+    elif action == "empty":
+        placeholder_success.warning(body="Database is empty, action cannot be performed!", icon='⚠️')
+    elif action == "rollback":
+        placeholder_success.error(body="Database action was NOT successful! Rollback was performed!", icon='⛔')
     else:
-        placeholder_success.error(body="Database action was NOT successful!", icon='🛑')
+        placeholder_success.info(body="Database data was loaded successfully", icon='✅')
 
     posts = database.get_all_posts_sorted_desc(st.session_state.dbsession)
     count = database.get_post_count(st.session_state.dbsession)
